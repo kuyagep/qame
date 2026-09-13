@@ -1,0 +1,209 @@
+:root {
+
+    /* ==========================================
+       MODERN BRAND DESIGN TOKENS
+       Dark Red Primary (#861408) & Gold Accent (#E17E10)
+       ========================================== */
+    --brand-primary: #861408 !important;
+    --brand-primary-hover: #650f06;
+    --brand-primary-light: rgba(134, 20, 8, 0.08);
+    --brand-accent: #E17E10;
+    --brand-accent-hover: #c46a0a;
+    --brand-dark: #500b04 !important;
+    --brand-light: #FFFFFF;
+    --card-border: #E6ECF8;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+
+    --brand-gradient: linear-gradient(135deg, #861408 0%, #500b04 100%);
+    --brand-accent-gradient: linear-gradient(135deg, #E17E10 0%, #B86008 100%);
+
+    /* ==========================================
+       APPLICATION CORE UTILITY MAPPINGS
+       ========================================== */
+    --primary: var(--brand-primary) !important;
+    --primary-hover: var(--brand-primary-hover);
+    --primary-light: var(--brand-primary-light);
+
+    /* Standard Contextual Elements */
+    --secondary: #CE1126;
+    --accent: var(--brand-accent);
+    --success: #198754;
+    --danger: #DC3545;
+    --warning: #FFC107;
+    --info: #0DCAF0;
+
+    /* ==========================================
+       LAYOUT FUNCTIONAL SCENARIOS
+       ========================================== */
+    --sidebar-bg: var(--brand-dark);
+    --sidebar-hover: #360702;
+    --sidebar-active: #FFFFFF;
+    --navbar-bg: #FFFFFF;
+    --body-bg: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --footer-bg: #FFFFFF;
+
+    /* ==========================================
+       TEXT ENGINE
+       ========================================== */
+    --text: var(--text-main);
+    --text-brand: var(--brand-accent);
+    --text-muted: var(--text-muted);
+    --white: #FFFFFF;
+
+    /* ==========================================
+       SURFACE BORDER
+       ========================================== */
+    --border: var(--card-border);
+
+    /* ==========================================
+       SHADOWS & DECORATIONS
+       ========================================== */
+    --shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .04);
+    --shadow-md: 0 .5rem 1rem rgba(0, 0, 0, .08);
+    --radius: 5px;
+
+}
+
+/* APPLICATION ROOT */
+
+body {
+    background: var(--body-bg) !important;
+    color: var(--text);
+    font-family: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* ADMINLTE NAVIGATION SIDEBAR ELEMENTS */
+.main-sidebar {
+    background: var(--sidebar-bg);
+}
+
+.brand-link {
+    background: var(--sidebar-bg) !important;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.brand-link img {
+    max-height: 38px;
+}
+
+.nav-sidebar .nav-link {
+    color: rgba(255, 255, 255, .75);
+}
+
+.nav-sidebar .nav-link:hover {
+    background: var(--sidebar-hover);
+    color: #fff;
+}
+
+.nav-sidebar .nav-link.active {
+    background: var(--brand-light) !important;
+    color: var(--brand-primary) !important;
+    font-weight: 600;
+}
+
+.nav-sidebar .nav-icon {
+    color: inherit;
+}
+
+/* INTERACTIVE ACTION BUTTON OVERRIDES */
+.btn {
+    border-radius: var(--radius);
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* FORM ELEMENTS AND VALIDATION CONTROLS */
+.form-control {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 .2rem rgba(134, 20, 8, .15);
+}
+
+.form-select {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+/* DATA METRICS DASHBOARD CONTAINERS */
+.stat-card {
+    border-radius: 16px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* UTILITY CSS LAYERS */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.radius {
+    border-radius: var(--radius);
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md);
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-primary {
+    background: var(--primary) !important;
+}
+
+.max-vh-50 {
+    max-height: 50vh;
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.transition-hover {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.transition-hover:hover {
+    background-color: rgba(0, 0, 0, 0.015);
+}

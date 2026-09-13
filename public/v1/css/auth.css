@@ -1,0 +1,116 @@
+:root {
+    /* style="background-color: #0033A0;" */
+    /* Brand Palette */
+    --brand-primary: #861408;
+    /* Dark Red (Dominant) */
+    --brand-primary-hover: #650f06;
+    /* Darker Red for Hover states */
+    --brand-accent: #E17E10;
+    /* Warm Amber/Gold (Accent) */
+    --brand-accent-hover: #c46a0a;
+    /* Darker Accent for Hover states */
+
+    /* Typography & Neutral Highlights */
+    --text-brand: #E17E10;
+    --brand-gradient: linear-gradient(135deg, #861408 0%, #500b04 100%);
+    --brand-accent-gradient: linear-gradient(135deg, #E17E10 0%, #B86008 100%);
+}
+
+/* --------------------------------------------------
+   1. Left Panel Branding Override
+-------------------------------------------------- */
+.bg-brand {
+    background: var(--brand-gradient);
+    position: relative;
+}
+
+.auth-brand {
+    background: var(--brand-gradient);
+    position: relative;
+}
+
+/* Warm accent line on the edge of the split layout */
+.auth-brand::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--brand-accent);
+}
+
+.text-primary {
+    color: var(--brand-primary) !important;
+}
+
+.text-brand {
+    color: var(--brand-accent) !important;
+}
+
+/* --------------------------------------------------
+   2. Buttons & Interactive Elements
+-------------------------------------------------- */
+/* Main Primary Action Button */
+.btn-primary {
+    background-color: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--brand-primary-hover) !important;
+    border-color: var(--brand-primary-hover) !important;
+    box-shadow: 0 4px 12px rgba(134, 20, 8, 0.3) !important;
+}
+
+/* Accent Outline/Secondary Button Style */
+.btn-accent {
+    background-color: var(--brand-accent) !important;
+    border-color: var(--brand-accent) !important;
+    color: #ffffff !important;
+}
+
+.btn-accent:hover {
+    background-color: var(--brand-accent-hover) !important;
+    border-color: var(--brand-accent-hover) !important;
+}
+
+/* --------------------------------------------------
+   3. Form Inputs & Active State Styling
+-------------------------------------------------- */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-accent) !important;
+    box-shadow: 0 0 0 0.25rem rgba(225, 126, 16, 0.25) !important;
+}
+
+/* Custom Checkbox Active Color */
+.form-check-input:checked {
+    background-color: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+}
+
+/* Link Hover States */
+a {
+    color: var(--brand-primary);
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--brand-accent);
+}
+
+/* --------------------------------------------------
+   4. Toastr Notification Customizations
+-------------------------------------------------- */
+#toast-container>.toast-success {
+    background-color: var(--brand-primary) !important;
+}
+
+#toast-container>.toast-info {
+    background-color: var(--brand-accent) !important;
+}

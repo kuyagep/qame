@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        @role('Super Admin')
+        @role('SuperAdmin')
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <x-stat-card title="Users" :value="$users" icon="fas fa-users" color="info" />

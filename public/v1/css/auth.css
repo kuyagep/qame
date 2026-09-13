@@ -1,18 +1,18 @@
 :root {
     /* style="background-color: #0033A0;" */
     /* Brand Palette */
-    --brand-primary: #861408;
+    --brand-primary: #2f4f4f;
     /* Dark Red (Dominant) */
-    --brand-primary-hover: #650f06;
+    --brand-primary-hover: #2f4f4f;
     /* Darker Red for Hover states */
-    --brand-accent: #E17E10;
+    --brand-accent: #708090;
     /* Warm Amber/Gold (Accent) */
-    --brand-accent-hover: #c46a0a;
+    --brand-accent-hover: #2f4f4f;
     /* Darker Accent for Hover states */
 
     /* Typography & Neutral Highlights */
     --text-brand: #E17E10;
-    --brand-gradient: linear-gradient(135deg, #861408 0%, #500b04 100%);
+    --brand-gradient: linear-gradient(135deg, #2f4f4f 0%, #053330 100%);
     --brand-accent-gradient: linear-gradient(135deg, #E17E10 0%, #B86008 100%);
 }
 
@@ -64,7 +64,7 @@
 .btn-primary:active {
     background-color: var(--brand-primary-hover) !important;
     border-color: var(--brand-primary-hover) !important;
-    box-shadow: 0 4px 12px rgba(134, 20, 8, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(10, 130, 124, 0.3) !important;
 }
 
 /* Accent Outline/Secondary Button Style */
@@ -85,7 +85,7 @@
 .form-control:focus,
 .form-select:focus {
     border-color: var(--brand-accent) !important;
-    box-shadow: 0 0 0 0.25rem rgba(225, 126, 16, 0.25) !important;
+    box-shadow: 0 0 0 0.25rem rgba(14, 127, 84, 0.25) !important;
 }
 
 /* Custom Checkbox Active Color */

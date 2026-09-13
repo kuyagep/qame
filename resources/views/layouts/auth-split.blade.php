@@ -11,11 +11,11 @@
                     <div>
                         <span class="d-block fw-bold text-uppercase text-white"
                             style="font-size: 2.75rem; letter-spacing: 0.05em;">
-                            Division Management
+                            Qaulity Assurance
                         </span>
                         <!-- Warm Amber/Gold Accent Text -->
                         <span class="d-block text-brand font-sans fw-bold" style="font-size: 1.85rem;">
-                            Information System
+                            Monitoring & Evaluation System
                         </span>
                     </div>
                 </div>

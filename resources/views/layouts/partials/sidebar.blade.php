@@ -1,6 +1,4 @@
 <div class="sidebar">
-
-
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -15,15 +13,20 @@
                 </li>
             @endcan
 
-
             <li class="nav-item">
-                <a href="{{ route('school-map.index') }}"
-                    class="nav-link {{ request()->routeIs('school-map.index') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-map-marker-alt"></i>
-                    <p>School Map</p>
+                <a href="{{ route('trainings.index') }}"
+                    class="nav-link {{ request()->routeIs('trainings.*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>L&D</p>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a href="{{ route('facilitators.index') }}"
+                    class="nav-link {{ request()->routeIs('facilitators.*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>Facilitators</p>
+                </a>
+            </li>
 
             {{-- Administration --}}
             @if (auth()->user()->canAny(['users.view', 'roles.view', 'permissions.view']))
@@ -58,30 +61,29 @@
                                 <p>Permissions</p>
                             </a>
                         </li>
-
+                        @can('departments.view')
+                            <li class="nav-item">
+                                <a href="{{ route('departments.index') }}"
+                                    class="nav-link {{ request()->routeIs('departments.*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Departments</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('offices.view')
+                            <li class="nav-item">
+                                <a href="{{ route('offices.index') }}"
+                                    class="nav-link {{ request()->routeIs('offices.*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Offices</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endif
-
             {{-- Reports --}}
-            @can('departments.view')
-                <li class="nav-item">
-                    <a href="{{ route('departments.index') }}"
-                        class="nav-link {{ request()->routeIs('departments.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Departments</p>
-                    </a>
-                </li>
-            @endcan
-            @can('offices.view')
-                <li class="nav-item">
-                    <a href="{{ route('offices.index') }}"
-                        class="nav-link {{ request()->routeIs('offices.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>Offices</p>
-                    </a>
-                </li>
-            @endcan
+
             @can('events.view')
                 <li class="nav-item">
                     <a href="{{ route('events.index') }}"
@@ -91,25 +93,6 @@
                     </a>
                 </li>
             @endcan
-            @can('reports.view')
-                <li class="nav-item">
-                    <a href="{{ route('reports.index') }}"
-                        class="nav-link {{ request()->routeIs('reports.*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-bar"></i>
-                        <p>Reports</p>
-                    </a>
-                </li>
-            @endcan
-
-            {{-- Settings --}}
-
-            <li class="nav-item">
-                <a href="{{ route('profile.index') }}"
-                    class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-user-circle"></i>
-                    <p>My Profile</p>
-                </a>
-            </li>
 
             @can('settings.manage')
                 <li class="nav-item">

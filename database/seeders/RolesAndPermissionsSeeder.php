@@ -43,6 +43,7 @@ class RolesAndPermissionsSeeder extends Seeder
             // Phase 4 Auxiliary Extensions Shared Blocks
             'reports.view',
             'settings.manage',
+            'profile.manage',
             'dashboard.view',
         ];
 
@@ -61,17 +62,21 @@ class RolesAndPermissionsSeeder extends Seeder
             'schools.edit',
             'districts.view',
             'offices.view',
-            'reports.view'
+            // 'reports.view'
         ]);
 
         $staffRole = Role::firstOrCreate(['name' => 'Staff']);
+        $staffRole->givePermissionTo([
+            'profile.manage',
+
+        ]);
 
         // 3. Create Primary Root Administrative Users
         $superadmin = User::firstOrCreate(
             ['email' => 'superadmin@gmail.com'],
             [
                 'username' => 'superadmin',
-                'name' => 'Super Admin User',
+                'name' => 'Super Admin',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
                 'status' => 'active',
@@ -80,10 +85,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $superadmin->assignRole($superAdminRole);
 
         $admin = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
+            ['email' => 'division@gmail.com'],
             [
                 'username' => 'admin',
-                'name' => 'Admin User',
+                'name' => 'Division Account',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
                 'status' => 'active',

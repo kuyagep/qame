@@ -158,6 +158,6 @@ class ProfileController extends Controller
             return response()->file(Storage::disk('public')->path($user->avatar));
         }
 
-        return redirect('https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&color=FFFFFF&background=861408');
+        return redirect('https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&color=FFFFFF&background=2f4f4f');
     }
 }

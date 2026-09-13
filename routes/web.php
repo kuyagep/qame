@@ -131,4 +131,4 @@ Route::get('/settings/image/{key}', [SettingController::class, 'showImage'])->na
 Route::get('/school-map', [SchoolMapController::class, 'index'])->name('school-map.index');
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dts.php';
-require __DIR__ . '/icts.php';
+require __DIR__ . '/qame.php';

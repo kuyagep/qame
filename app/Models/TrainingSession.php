@@ -18,8 +18,8 @@ class TrainingSession extends Model
     ];
 
     protected $casts = [
-        'start_time' => 'datetime:F j, Y g:i A',
-        'end_time'   => 'datetime:F j, Y g:i A',
+        'start_time' => 'datetime:Y-m-d\TH:i',
+        'end_time'   => 'datetime:Y-m-d\TH:i',
     ];
 
     public function training(): BelongsTo

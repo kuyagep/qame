@@ -330,33 +330,50 @@
                                 `<span class="badge badge-warning">Ongoing</span>`;
 
                             rows += `
-                            <tr id="row-${training.id}">
-                                <td class="align-middle">${index + 1}</td>
-                                <td class="align-middle">
-                                    <a href="/trainings/${training.id}/sessions" class="font-weight-bold text-primary">${training.title}</a>
-                                </td>
-                                <td class="align-middle">${training.date || 'N/A'}</td>
-                                <td class="align-middle">${training.venue || 'N/A'}</td>
-                                <td class="align-middle">${accommodationBadge}</td>
-                                <td class="align-middle">${statusBadge}</td>
-                                <td class="align-middle text-right pr-4">
-                                    <a href="/trainings/${training.id}/sessions" class="btn btn-sm btn-outline-info" title="Manage Sessions & Topics">
-                                        <i class="fas fa-list-alt"></i>
-                                    </a>
-                                    <button class="btn btn-sm btn-outline-info mr-1 btn-manage-test" data-training-id="${training.id}" data-type="pretest" title="Pretest">
-                                        <i class="fas fa-clipboard-list"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-warning mr-1 btn-manage-test" data-training-id="${training.id}" data-type="posttest" title="Posttest">
-                                        <i class="fas fa-file-signature"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-primary btn-edit" data-id="${training.id}">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${training.id}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>`;
+                <tr id="row-${training.id}">
+                    <td class="align-middle">${index + 1}</td>
+                    <td class="align-middle">
+                        <a href="/trainings/${training.id}/sessions" class="font-weight-bold text-primary">${training.title}</a>
+                    </td>
+                    <td class="align-middle">${training.date || 'N/A'}</td>
+                    <td class="align-middle">${training.venue || 'N/A'}</td>
+                    <td class="align-middle">${accommodationBadge}</td>
+                    <td class="align-middle">${statusBadge}</td>
+                    <td class="align-middle text-right pr-4">
+                        <a href="/trainings/${training.id}/sessions" class="btn btn-sm btn-outline-info" title="Manage Sessions & Topics">
+                            <i class="fas fa-list-alt"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-info mr-1 btn-manage-test" data-training-id="${training.id}" data-type="pretest" title="Pretest">
+                            <i class="fas fa-clipboard-list"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning mr-1 btn-manage-test" data-training-id="${training.id}" data-type="posttest" title="Posttest">
+                            <i class="fas fa-file-signature"></i>
+                        </button>
+
+                        <!-- Take Evaluation Dropdown -->
+                        <div class="dropdown d-inline-block mr-1">
+                            <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="evalDropdown${training.id}" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Take Evaluation">
+                                <i class="fas fa-clipboard-check"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="evalDropdown${training.id}">
+                                <h6 class="dropdown-header text-uppercase font-weight-bold">Select Evaluation</h6>
+                                <a class="dropdown-item py-2" href="/trainings/${training.id}/speaker-evaluation" target="_blank">
+                                    <i class="fas fa-user-tie text-primary mr-2"></i> Speaker / Facilitator
+                                </a>
+                                <a class="dropdown-item py-2" href="/trainings/${training.id}/day-evaluation" target="_blank">
+                                    <i class="fas fa-calendar-day text-success mr-2"></i> End of the Day
+                                </a>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-sm btn-outline-primary btn-edit" data-id="${training.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${training.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>`;
                         });
                     }
                     $('#training-list').html(rows);
@@ -503,7 +520,7 @@
                 $('#question-builder-section').hide();
                 $('#question-list').html(
                     '<tr><td colspan="6" class="text-center text-muted">No questions added yet.</td></tr>'
-                    );
+                );
 
                 $('#assessmentModal').modal('show');
             });
@@ -571,7 +588,7 @@
                     complete: function() {
                         $btn.prop('disabled', false).html(
                             '<i class="fas fa-save mr-1"></i> Save Config & Unlock Questions'
-                            );
+                        );
                     }
                 });
             });

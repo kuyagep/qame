@@ -11,6 +11,6 @@ class Facilitator extends Model
 
     public function sessions(): HasMany
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(TrainingSession::class);
     }
 }

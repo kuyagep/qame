@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentResponseController;
+use App\Http\Controllers\DayEvaluationController;
 use App\Http\Controllers\FacilitatorController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SpeakerEvaluationController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +45,10 @@ Route::middleware('auth')->group(function () {
     // --- Participant Assessment Submissions ---
     Route::get('/assessments/{assessment}/take', [AssessmentResponseController::class, 'show'])->name('assessments.show');
     Route::post('/assessments/submit', [AssessmentResponseController::class, 'store'])->name('assessments.submit');
+
+
+    Route::get('/trainings/{training}/speaker-evaluation', [SpeakerEvaluationController::class, 'create'])->name('trainings.speaker-evaluations.create');
+    Route::post('/trainings/{training}/speaker-evaluation', [SpeakerEvaluationController::class, 'store'])->name('trainings.speaker-evaluations.store');
+    Route::get('/trainings/{training}/day-evaluation', [DayEvaluationController::class, 'create'])->name('trainings.day-evaluations.create');
+    Route::post('/trainings/{training}/day-evaluation', [DayEvaluationController::class, 'store'])->name('trainings.day-evaluations.store');
 });

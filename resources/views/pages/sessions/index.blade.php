@@ -249,6 +249,23 @@
                 timerProgressBar: true
             });
 
+            // Helper function for user-friendly display
+            function formatDisplayTime(dateString) {
+                if (!dateString) return '';
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return dateString; // Return original if parsing fails
+
+                return new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                }).format(date);
+            }
+
+
             fetchSessions();
 
             function fetchSessions() {
@@ -281,12 +298,15 @@
 
                             const facilitatorName = session.facilitator ? session.facilitator.name :
                                 'Unassigned';
-                            const timeDisplay = session.time_range ? session.time_range :
-                                `${session.start_time || ''} - ${session.end_time || ''}`;
-                            const pretestCount = session.pretest && session.pretest.questions ?
-                                session.pretest.questions.length : 0;
-                            const posttestCount = session.posttest && session.posttest.questions ?
-                                session.posttest.questions.length : 0;
+
+                            const formattedStart = formatDisplayTime(session.start_time);
+                            const formattedEnd = formatDisplayTime(session.end_time);
+
+                            const timeDisplay = session.time_range ?
+                                session.time_range :
+                                (formattedStart && formattedEnd ?
+                                    `${formattedStart} - ${formattedEnd}` : (formattedStart ||
+                                        formattedEnd || 'N/A'));
 
                             html += `
                                 <div class="card shadow-sm border-0 mb-4" id="session-card-${session.id}">

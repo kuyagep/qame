@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentResponseController;
 use App\Http\Controllers\FacilitatorController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\TrainingController;
@@ -31,9 +32,13 @@ Route::middleware('auth')->group(function () {
 
     // Manage tests for a session
     Route::get('sessions/{session}/assessment', [AssessmentController::class, 'index'])->name('sessions.assessment.index');
-    Route::post('sessions/{session}/assessment', [AssessmentController::class, 'store'])->name('sessions.assessment.store');
+    Route::post('/trainings/{training}/assessment', [AssessmentController::class, 'store'])->name('trainings.assessment.store');
     Route::post('assessment/{assessment}/questions', [AssessmentController::class, 'addQuestion'])->name('assessment.questions.store');
     Route::delete('questions/{question}', [AssessmentController::class, 'deleteQuestion'])->name('questions.destroy');
+
+    Route::get('/assessments/{assessment}/questions', [QuestionController::class, 'index'])->name('assessments.questions.index');
+    Route::post('/assessments/{assessment}/questions', [QuestionController::class, 'store'])->name('assessments.questions.store');
+    Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
     // --- Participant Assessment Submissions ---
     Route::get('/assessments/{assessment}/take', [AssessmentResponseController::class, 'show'])->name('assessments.show');

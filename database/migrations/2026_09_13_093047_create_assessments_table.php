@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('training_session_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('training_id')->constrained()->cascadeOnDelete();
             $table->enum('type', ['pretest', 'posttest']);
             $table->string('title')->nullable();
             $table->integer('passing_score')->default(75);
             $table->timestamps();
+
+            // Prevents creating duplicate pretests/posttests for the same session or training
+            $table->unique(['training_id',  'type']);
         });
     }
 

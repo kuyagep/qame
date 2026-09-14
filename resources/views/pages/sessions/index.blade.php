@@ -321,14 +321,7 @@
                                         </ul>
                                     </div>
 
-                                    <div class="card-footer bg-light d-flex justify-content-start gap-2 py-2">
-                                        <button class="btn btn-sm btn-outline-info mr-2 btn-manage-test" data-session-id="${session.id}" data-type="pretest">
-                                            <i class="fas fa-clipboard-list mr-1"></i> Pretest (${pretestCount} Qs)
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-warning btn-manage-test" data-session-id="${session.id}" data-type="posttest">
-                                            <i class="fas fa-file-signature mr-1"></i> Posttest (${posttestCount} Qs)
-                                        </button>
-                                    </div>
+
                                 </div>`;
                         });
                     }
@@ -359,9 +352,19 @@
                     $('#session_id').val(data.id);
                     $('#session_day').val(data.day);
                     $('#session_title').val(data.title);
+
+                    // Helper function to format date string to YYYY-MM-DDTHH:mm
+                    function formatDateTimeLocal(dateTimeStr) {
+                        if (!dateTimeStr) return '';
+                        // Replaces "2026-10-12 08:30:00" -> "2026-10-12T08:30"
+                        return dateTimeStr.replace(' ', 'T').substring(0, 16);
+                    }
+
                     $('#facilitator_id').val(data.facilitator_id);
-                    if (data.start_time) $('#start_time').val(data.start_time.slice(0, 16));
-                    if (data.end_time) $('#end_time').val(data.end_time.slice(0, 16));
+                    // Set the formatted values to the datetime-local inputs
+                    $('#start_time').val(formatDateTimeLocal(data.start_time));
+                    $('#end_time').val(formatDateTimeLocal(data.end_time));
+
                     sessionModal.show();
                 });
             });

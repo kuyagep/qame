@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Assessment extends Model
 {
-    protected $fillable = ['training_session_id', 'type', 'title', 'passing_score'];
+    protected $fillable = ['training_id', 'type', 'title', 'passing_score'];
+
+
 
     public function training(): BelongsTo
     {
@@ -25,8 +27,8 @@ class Assessment extends Model
         return $this->hasMany(AssessmentResponse::class);
     }
 
-    public function session()
-    {
-        return $this->belongsTo(TrainingSession::class);
-    }
+    // public function session()
+    // {
+    //     return $this->belongsTo(TrainingSession::class);
+    // }
 }

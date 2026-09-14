@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assessment;
 use App\Models\Question;
+use App\Models\Training;
 use App\Models\TrainingSession;
 use Illuminate\Http\Request;
 
@@ -15,23 +16,28 @@ class AssessmentController extends Controller
         return response()->json($tests);
     }
 
-    public function store(Request $request, TrainingSession $session)
+    public function store(Request $request, Training $training)
     {
         $validated = $request->validate([
             'type'          => 'required|in:pretest,posttest',
             'title'         => 'required|string|max:255',
-            'passing_score' => 'required|integer|min:1',
+            'passing_score' => 'required|integer|min:0|max:100',
         ]);
 
-        $test = $session->assessments()->updateOrCreate(
-            ['type' => $validated['type']],
-            $validated
+        $assessment = Assessment::updateOrCreate(
+            [
+                'training_id' => $training->id,
+                'type'        => $validated['type'],
+            ],
+            [
+                'title'         => $validated['title'],
+                'passing_score' => $validated['passing_score'],
+            ]
         );
 
         return response()->json([
-            'success' => true,
-            'message' => ucfirst($validated['type']) . ' configured successfully.',
-            'data'    => $test
+            'message' => 'Assessment configuration saved successfully.',
+            'data'    => $assessment,
         ]);
     }
 

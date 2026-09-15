@@ -48,12 +48,22 @@ class TrainingController extends Controller
         ], 201);
     }
 
+    // public function show(Training $training)
+    // {
+    //     $training->load(['sessions.facilitator', 'sessions.topics', 'assessments.questions']);
+    //     $facilitators = Facilitator::all();
+
+    //     return view('pages.trainings.show', compact('training', 'facilitators'));
+    // }
+
     public function show(Training $training)
     {
-        $training->load(['sessions.facilitator', 'sessions.topics', 'assessments.questions']);
-        $facilitators = Facilitator::all();
+        // Eager load participants with pivot timestamps
+        $training->load(['participants' => function ($query) {
+            $query->orderBy('training_user.created_at', 'desc');
+        }]);
 
-        return view('pages.trainings.show', compact('training', 'facilitators'));
+        return view('pages.trainings.show', compact('training'));
     }
 
     public function edit(Training $training)

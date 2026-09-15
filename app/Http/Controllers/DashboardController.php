@@ -12,6 +12,10 @@ class DashboardController extends Controller
 {
     public function index() //superadmin
     {
+        if (auth()->user()->hasRole('Staff')) {
+            return redirect()->route('participant.dashboard');
+        }
+
         // Fetch active announcements globally for all user roles
         $announcements = Announcement::where('is_active', true)
             ->latest()
@@ -31,5 +35,8 @@ class DashboardController extends Controller
     public function admin() {}
 
 
-    public function staff() {}
+    public function staff()
+    {
+        return redirect()->route('participant.dashboard');
+    }
 }

@@ -12,21 +12,32 @@
                     </a>
                 </li>
             @endcan
+            @role('Staff')
+                <li class="nav-item">
+                    <a href="{{ route('participant.dashboard') }}"
+                        class="nav-link {{ request()->routeIs('participant.dashboard') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-solid fa-chart-pie"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+            @endrole
+            @role('Admin')
+                <li class="nav-item">
+                    <a href="{{ route('trainings.index') }}"
+                        class="nav-link {{ request()->routeIs('trainings.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>L&D</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('facilitators.index') }}"
+                        class="nav-link {{ request()->routeIs('facilitators.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Facilitators</p>
+                    </a>
+                </li>
+            @endrole
 
-            <li class="nav-item">
-                <a href="{{ route('trainings.index') }}"
-                    class="nav-link {{ request()->routeIs('trainings.*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>L&D</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('facilitators.index') }}"
-                    class="nav-link {{ request()->routeIs('facilitators.*') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>Facilitators</p>
-                </a>
-            </li>
 
             {{-- Administration --}}
             @if (auth()->user()->canAny(['users.view', 'roles.view', 'permissions.view']))

@@ -34,6 +34,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'captcha.required' => 'Please fill out the security CAPTCHA.',
+            'captcha.captcha' => 'The CAPTCHA code you entered is incorrect.',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

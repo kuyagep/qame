@@ -4,6 +4,7 @@ use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\AssessmentResponseController;
 use App\Http\Controllers\DayEvaluationController;
 use App\Http\Controllers\FacilitatorController;
+use App\Http\Controllers\ParticipantDashboardController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SpeakerEvaluationController;
@@ -43,12 +44,37 @@ Route::middleware('auth')->group(function () {
     Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 
     // --- Participant Assessment Submissions ---
-    Route::get('/assessments/{assessment}/take', [AssessmentResponseController::class, 'show'])->name('assessments.show');
-    Route::post('/assessments/submit', [AssessmentResponseController::class, 'store'])->name('assessments.submit');
+    // Route::get('/assessments/{assessment}/take', [AssessmentResponseController::class, 'show'])->name('assessments.show');
+    // Route::post('/assessments/submit', [AssessmentResponseController::class, 'store'])->name('assessments.submit');
 
 
     Route::get('/trainings/{training}/speaker-evaluation', [SpeakerEvaluationController::class, 'create'])->name('trainings.speaker-evaluations.create');
     Route::post('/trainings/{training}/speaker-evaluation', [SpeakerEvaluationController::class, 'store'])->name('trainings.speaker-evaluations.store');
     Route::get('/trainings/{training}/day-evaluation', [DayEvaluationController::class, 'create'])->name('trainings.day-evaluations.create');
     Route::post('/trainings/{training}/day-evaluation', [DayEvaluationController::class, 'store'])->name('trainings.day-evaluations.store');
+});
+
+
+Route::middleware(['auth'])->prefix('participant')->name('participant.')->group(function () {
+    // Participant Dashboard Page
+    Route::get('/dashboard', [ParticipantDashboardController::class, 'index'])->name('dashboard');
+
+    // AJAX Data & Join Endpoint
+    Route::get('/trainings-data', [ParticipantDashboardController::class, 'getTrainingsData'])->name('trainings.data');
+    Route::post('/trainings/{training}/join', [ParticipantDashboardController::class, 'joinTraining'])->name('trainings.join');
+
+    // --- Participant Assessment Submissions ---
+    Route::prefix('assessments')->name('assessments.')->group(function () {
+        // Render assessment taking form
+        Route::get('/{assessment}/take', [AssessmentResponseController::class, 'show'])->name('show');
+
+        // Handle assessment AJAX submission
+        Route::post('/submit', [AssessmentResponseController::class, 'store'])->name('submit');
+
+        // Optional: View completed assessment details/results
+        Route::get('/{assessment}/results', [AssessmentResponseController::class, 'results'])->name('results');
+
+        Route::get('/{assessment}/status', [AssessmentResponseController::class, 'checkStatus'])
+            ->name('assessments.checkStatus');
+    });
 });

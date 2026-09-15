@@ -6,8 +6,10 @@
 @section('content')
     <div class="container-fluid pt-3">
         <div class="card shadow-sm border-0">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+            {{-- d-flex justify-content-between align-items-center --}}
+            <div class="card-header bg-white d-flex justify-content-between align-items-center  py-3">
                 <h5 class="m-0 font-weight-bold text-dark">Training Management</h5>
+
                 <button class="btn btn-primary btn-sm" id="btn-add">
                     <i class="fas fa-plus mr-1"></i> Add New Training
                 </button>
@@ -340,39 +342,44 @@
                     <td class="align-middle">${accommodationBadge}</td>
                     <td class="align-middle">${statusBadge}</td>
                     <td class="align-middle text-right pr-4">
-                        <a href="/trainings/${training.id}/sessions" class="btn btn-sm btn-outline-info" title="Manage Sessions & Topics">
-                            <i class="fas fa-list-alt"></i>
-                        </a>
-                        <button class="btn btn-sm btn-outline-info mr-1 btn-manage-test" data-training-id="${training.id}" data-type="pretest" title="Pretest">
-                            <i class="fas fa-clipboard-list"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-warning mr-1 btn-manage-test" data-training-id="${training.id}" data-type="posttest" title="Posttest">
-                            <i class="fas fa-file-signature"></i>
-                        </button>
+    <!-- View Details / Participants -->
+    <a href="/trainings/${training.id}" class="btn btn-sm btn-outline-primary mr-1" title="View Training & Participants">
+        <i class="fas fa-eye"></i>
+    </a>
 
-                        <!-- Take Evaluation Dropdown -->
-                        <div class="dropdown d-inline-block mr-1">
-                            <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="evalDropdown${training.id}" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Take Evaluation">
-                                <i class="fas fa-clipboard-check"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="evalDropdown${training.id}">
-                                <h6 class="dropdown-header text-uppercase font-weight-bold">Select Evaluation</h6>
-                                <a class="dropdown-item py-2" href="/trainings/${training.id}/speaker-evaluation" target="_blank">
-                                    <i class="fas fa-user-tie text-primary mr-2"></i> Speaker / Facilitator
-                                </a>
-                                <a class="dropdown-item py-2" href="/trainings/${training.id}/day-evaluation" target="_blank">
-                                    <i class="fas fa-calendar-day text-success mr-2"></i> End of the Day
-                                </a>
-                            </div>
-                        </div>
+    <a href="/trainings/${training.id}/sessions" class="btn btn-sm btn-outline-info mr-1" title="Manage Sessions & Topics">
+        <i class="fas fa-list-alt"></i>
+    </a>
+    <button class="btn btn-sm btn-outline-info mr-1 btn-manage-test" data-training-id="${training.id}" data-type="pretest" title="Pretest">
+        <i class="fas fa-clipboard-list"></i>
+    </button>
+    <button class="btn btn-sm btn-outline-warning mr-1 btn-manage-test" data-training-id="${training.id}" data-type="posttest" title="Posttest">
+        <i class="fas fa-file-signature"></i>
+    </button>
 
-                        <button class="btn btn-sm btn-outline-primary btn-edit" data-id="${training.id}">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${training.id}">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
+    <!-- Take Evaluation Dropdown -->
+    <div class="dropdown d-inline-block mr-1">
+        <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="evalDropdown${training.id}" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Take Evaluation">
+            <i class="fas fa-clipboard-check"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="evalDropdown${training.id}">
+            <h6 class="dropdown-header text-uppercase font-weight-bold">Select Evaluation</h6>
+            <a class="dropdown-item py-2" href="/trainings/${training.id}/speaker-evaluation" target="_blank">
+                <i class="fas fa-user-tie text-primary mr-2"></i> Speaker / Facilitator
+            </a>
+            <a class="dropdown-item py-2" href="/trainings/${training.id}/day-evaluation" target="_blank">
+                <i class="fas fa-calendar-day text-success mr-2"></i> End of the Day
+            </a>
+        </div>
+    </div>
+
+    <button class="btn btn-sm btn-outline-secondary mr-1 btn-edit" data-id="${training.id}" title="Edit Training">
+        <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${training.id}" title="Delete Training">
+        <i class="fas fa-trash"></i>
+    </button>
+</td>
                 </tr>`;
                         });
                     }

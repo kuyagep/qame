@@ -12,8 +12,8 @@
                         <span class="badge bg-light text-primary text-uppercase me-2">
                             {{ $assessment->type }}
                         </span>
-                        <h4 class="mb-0 mt-1 font-weight-bold">{{ $assessment->title }}</h4>
-                        <small class="text-white-50">Session: {{ $assessment->session->title ?? 'General' }}</small>
+                        <h4 class="mb-0 mt-1 font-weight-bold">{{ $assessment->training->title }}</h4>
+                        <small class="text-white-50">Session: {{ $assessment->title ?? 'General' }}</small>
                     </div>
 
                     <div class="card-body p-4">
@@ -36,7 +36,7 @@
                                                 : json_decode($question->options, true) ?? [];
                                         @endphp
 
-                                        @if ($question->question_type === 'multiple_choice' || $question->question_type === 'true_false')
+                                        @if ($question->type === 'multiple_choice' || $question->type === 'true_false')
                                             @foreach ($options as $optKey => $option)
                                                 <div class="form-check mb-2">
                                                     <input class="form-check-input" type="radio"
@@ -82,7 +82,7 @@
                     '<i class="fas fa-spinner fa-spin me-1"></i> Submitting...');
 
                 $.ajax({
-                    url: "{{ route('assessments.submit') }}",
+                    url: "{{ route('participant.assessments.submit') }}",
                     type: 'POST',
                     data: $(this).serialize(),
                     dataType: 'json',
@@ -103,7 +103,7 @@
                         let message = 'Failed to submit assessment.';
                         if (xhr.status === 422 && xhr.responseJSON.errors) {
                             message = Object.values(xhr.responseJSON.errors).flat().join(
-                            '<br>');
+                                '<br>');
                         } else if (xhr.responseJSON && xhr.responseJSON.message) {
                             message = xhr.responseJSON.message;
                         }

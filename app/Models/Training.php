@@ -28,4 +28,14 @@ class Training extends Model
     {
         return $this->hasMany(TrainingSession::class);
     }
+
+    public function participants()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    public function assessments(): HasMany
+    {
+        return $this->hasMany(Assessment::class);
+    }
 }

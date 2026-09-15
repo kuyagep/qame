@@ -19,8 +19,10 @@ return new class extends Migration
             $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete();
 
             $table->integer('total_score')->default(0);
+            $table->integer('max_score')->default(0);
             $table->decimal('percentage', 5, 2)->default(0.00);
             $table->boolean('is_passed')->default(false);
+            $table->integer('total_questions')->nullable();
             $table->timestamp('submitted_at')->useCurrent();
             $table->timestamps();
 

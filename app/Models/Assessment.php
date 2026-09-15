@@ -27,8 +27,8 @@ class Assessment extends Model
         return $this->hasMany(AssessmentResponse::class);
     }
 
-    // public function session()
-    // {
-    //     return $this->belongsTo(TrainingSession::class);
-    // }
+    public function submissions()
+    {
+        return $this->hasMany(AssessmentResponse::class);
+    }
 }
